@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plug TV Gratidão - Filmes e Séries</title>
+<link rel="manifest" href="manifest.json">
+<meta name="description" content="Assista filmes, séries, novelas, ação, comédia, terror, romance dublado e legendado grátis">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2263470788888608" crossorigin="anonymous"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:110px}
+.header{background:#111;border-bottom:3px solid #ffcc00;padding:12px;text-align:center;position:sticky;top:0;z-index:30}
+.ad-box{background:#1a1a1a;border:1px dashed #333;border-radius:12px;margin:10px;padding:5px;min-height:90px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px}
+.ad-box-grande{min-height:250px}
+.generos{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.pasta{background:#1c1c1c;border:1px solid #333;border-radius:16px;padding:14px;position:relative}
+.btn-pasta{position:absolute;top:8px;right:8px;background:#ff2222;border:none;color:#fff;border-radius:50%;width:28px;height:28px}
+.btn-open{width:100%;margin-top:10px;background:#ffcc00;border:none;padding:10px;border-radius:10px;font-weight:900}
+.topo-lista{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#111;position:sticky;top:0;z-index:10}
+.filme{background:#1a1a1a;border-left:4px solid #ffcc00;border-radius:12px;margin:8px 10px;padding:10px;display:flex;justify-content:space-between;align-items:center}
+.btn{border:none;padding:10px 12px;border-radius:8px;font-weight:bold}.btn-ver{background:#ffcc00;color:#000}.btn-del{background:#333;color:#fff}
+.barra{position:fixed;bottom:0;left:0;width:100%;background:#111;border-top:2px solid #222;display:flex;gap:4px;padding:8px;z-index:40}
+.barra button{flex:1;padding:11px 4px;border-radius:10px;border:none;font-weight:900;font-size:9px}
+#modalP,#modalG,#modalF,#modalB{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);z-index:999;padding:15px;overflow:auto}
+input,select{width:100%;padding:12px;margin:6px 0;background:#222;color:#fff;border:1px solid #444;border-radius:8px}
+.big{width:100%;padding:14px;background:#ffcc00;color:#000;border:none;border-radius:12px;font-weight:900;margin:8px 0}
+.rodape{padding:20px;text-align:center;color:#666;font-size:11px}
+</style>
+</head>
+<body>
+<div class="header">
+🔌 <b>PLUG TV GRATIDÃO</b><br>
+<small style="color:#aaa">Filmes, Séries e Novelas Dublado e Legendado</small>
+</div>
+
+<!-- ANÚNCIO 1 - TOPO - O QUE MAIS PAGA -->
+<div class="ad-box">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2263470788888608" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
+<div id="telaGeneros"></div>
+
+<!-- ANÚNCIO 2 - MEIO DAS PASTAS -->
+<div class="ad-box ad-box-grande">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2263470788888608" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
+<div id="telaFilmes" style="display:none"></div>
+
+<!-- ANÚNCIO 3 - DENTRO DOS FILMES -->
+<div id="adFilmes" style="display:none" class="ad-box">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2263470788888608" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
+<div class="rodape">
+Plug TV Gratidão - Todos os direitos reservados 2026<br>
+Filmes para assistir online grátis<br><br>
+<span style="font-size:10px">Apoie: PIX 025.446.319-37 José Marcos</span>
+</div>
+
+<div class="barra">
+<button style="background:#00ff88" onclick="abrirAddDireto()">📱 MEMÓRIA</button>
+<button style="background:#00aaff;color:#fff" onclick="document.getElementById('fileMulti').click()">📂 VÁRIOS</button>
+<button style="background:#ffcc00" onclick="abrirGenero()">➕ GÊNERO</button>
+<button style="background:#ff8800;color:#fff" onclick="abrirBackup()">💾 BACKUP</button>
+<button style="background:#fff" onclick="resetar()">🔄 RESET</button>
+</div>
+
+<input type="file" id="fileInput" accept="video/*" style="display:none">
+<input type="file" id="fileMulti" accept="video/*" multiple style="display:none">
+<input type="file" id="fileBackup" accept=".json" style="display:none">
+
+<div id="modalP" style="background:#000"><button onclick="fecharP()" style="position:absolute;top:10px;right:10px;background:#ffcc00;border:none;padding:10px 15px;border-radius:10px;font-weight:bold">✕ FECHAR</button><video id="v" controls autoplay style="width:100%;height:85%;margin-top:50px"></video><iframe id="yt" style="width:100%;height:85%;margin-top:50px;display:none" allowfullscreen frameborder="0"></iframe></div>
+<div id="modalG"><h2 style="color:#ffcc00">➕ Nova Pasta</h2><input id="nomeGenero" placeholder="Ex: Gospel..."><button onclick="salvarGenero()" style="width:100%;padding:14px;background:#ffcc00;border:none;border-radius:10px;font-weight:900">CRIAR</button><button onclick="fecharModais()" style="width:100%;padding:10px;background:#333;color:#fff;border:none;border-radius:10px;margin-top:8px">Voltar</button></div>
+<div id="modalF"><h2 style="color:#00ff88">📱 Adicionar da Memória</h2><select id="fGenero"></select><div id="nomeArquivo" style="background:#111;padding:10px;border-radius:8px;color:#00ff88;margin:6px 0;display:none"></div><button class="big" onclick="document.getElementById('fileInput').click()">📂 ESCOLHER FILME</button><button id="btnSalvar" onclick="salvarDaMemoria()" style="display:none;width:100%;padding:14px;background:#ffcc00;border:none;border-radius:10px;font-weight:900">✅ SALVAR</button><button onclick="fecharModais()" style="width:100%;padding:10px;background:#333;color:#fff;border:none;border-radius:10px;margin-top:8px">Cancelar</button></div>
+<div id="modalB"><h2 style="color:#ff8800">💾 Backup</h2><button class="big" style="background:#ffcc00" onclick="fazerBackup()">⬇️ BAIXAR BACKUP</button><button class="big" style="background:#00aaff;color:#fff" onclick="document.getElementById('fileBackup').click()">⬆️ RESTAURAR</button><button onclick="fecharModais()" style="width:100%;padding:10px;background:#333;color:#fff;border:none;border-radius:10px;margin-top:8px">Fechar</button></div>
+
+<script>
+const YT=['jfKfPfyJRdk','2YBtspm8j8M','dQw4w9WgXcQ'];
+const MP4='https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_Trailer_720_10s_1MB.mp4';
+function mkD(nomes){return nomes.map((n,i)=>({nome:n,tipo:i%4==0?'youtube':'mp4',link:i%4==0?`https://www.youtube-nocookie.com/embed/${YT[i%YT.length]}?autoplay=1`:MP4}));}
+let padraoBase=[
+{nome:"🔥 Ação",filmes:mkD(["John Wick 4 Dublado","Missão Impossível 7 Dublado","Velozes 10 Dublado","Resgate 2 Dublado","O Protetor 3 Dublado","Atirador Dublado","Rambo 5 Dublado","Duro de Matar Dublado","Top Gun Maverick Dublado","Creed 3 Dublado","John Wick 3 Dublado","Velozes 9 Dublado","Agente Oculto Dublado","Sem Remorso Dublado","Alerta Vermelho Dublado","O Alvo Dublado","Invasão Dublado","Esquadrão 6 Dublado","Força Total Dublado","Mercenários 4 Dublado","O Resgate 3 Legendado"])},
+{nome:"😂 Comédia",filmes:mkD(["Gente Grande 2 Dublado","Se Beber Não Case 3 Dublado","Esposa de Mentirinha Dublado","Click Dublado","Todo Mundo em Pânico 5 Dublado","As Branquelas Dublado","O Máskara Dublado","Ace Ventura Dublado","Norbit Dublado","Minha Mãe é uma Peça 3 Dublado","Até que a Sorte nos Separe Dublado","Os Parças 2 Dublado","Sai de Baixo Dublado","Zoolander Dublado","Superbad Dublado","Ted 2 Dublado","Vizinhos 2 Dublado","O Virgem de 40 Anos Dublado","Debi e Lóide 2 Dublado","Shrek 5 Dublado","Minions 2 Dublado","Gente Grande 2 Legendado","Se Beber Não Case Legendado","Esposa de Mentirinha Legendado","Click Legendado","Todo Mundo em Pânico Legendado"])},
+{nome:"😱 Terror",filmes:mkD(["Invocação do Mal 3 Dublado","Annabelle 3 Dublado","A Freira 2 Dublado"])},
+{nome:"❤️ Romance",filmes:mkD(["Diário de uma Paixão Dublado","Como Eu Era Antes de Você Dublado","A Culpa é das Estrelas Dublado","Titanic Dublado","Simplesmente Acontece Dublado","Para Todos os Garotos Dublado","Depois do Universo Dublado","Através da Minha Janela Dublado","365 Dias Dublado","50 Tons de Cinza Dublado","Querido John Dublado","Um Amor Para Recordar Dublado","A Proposta Dublado","Cartas para Julieta Dublado","Questão de Tempo Dublado","Barraca do Beijo 3 Dublado","Continência ao Amor Dublado","Amor em Verona Dublado","Amor e Outras Drogas Dublado","Lindo de Morrer Dublado"])},
+{nome:"📺 Séries",filmes:mkD(["The Last of Us Dublado","Stranger Things Dublado","Round 6 Dublado","La Casa de Papel Dublado","Breaking Bad Dublado","The Witcher Dublado","Game of Thrones Dublado","The Walking Dead Dublado","Peaky Blinders Dublado","Vikings Dublado","Lupin Dublado","Cobra Kai Dublado","Sintonia Dublado","Cidade Invisível Dublado","3% Dublado","O Mecanismo Dublado","Narcos Dublado","Elite Dublado","Dark Dublado","The Boys Dublado","Wandinha Dublado"])},
+{nome:"💃 Novelas",filmes:mkD(["Avenida Brasil Dublado","O Rei do Gado Dublado","Pantanal 2022 Dublado","Terra e Paixão Dublado","Vai na Fé Dublado","Todas as Flores Dublado","Caminho das Índias Dublado","O Clone Dublado","Senhora do Destino Dublado","Por Amor Dublado","Mulheres Apaixonadas Dublado","Laços de Família Dublado","Chocolate com Pimenta Dublado","Alma Gêmea Dublado","O Cravo e a Rosa Dublado","Cordel Encantado Dublado","A Favorita Dublado","Fina Estampa Dublado","A Dona do Pedaço Dublado","Amor Perfeito Dublado"])},
+{nome:"Infantil",filmes:mkD(["Patrulha Canina Dublado","Peppa Pig Dublado","Galinha Pintadinha Dublado","Masha e o Urso Dublado","Toy Story 4 Dublado","Frozen 2 Dublado","Moana Dublado","Encanto Dublado","Luca Dublado","Soul Dublado","Divertida Mente Dublado","Carros 3 Dublado","Os Incríveis 2 Dublado","Viva Dublado","Coco Dublado","Shrek Dublado","Madagascar Dublado","Meu Malvado Favorito 3 Dublado","Minions Dublado","Patrulha Canina Filme Dublado"])},
+{nome:"Gospel",filmes:mkD(["A Cabana Dublado","Deus Não Está Morto Dublado","Quarto de Guerra Dublado","Desafiando Gigantes Dublado","Corajosos Dublado","À Prova de Fogo Dublado","Superação Dublado","Milagres do Paraíso Dublado","O Céu é de Verdade Dublado","Até o Último Homem Dublado","Paulo Apóstolo Dublado","Ressurreição Dublado","Ben-Hur Dublado","Noé Dublado","Êxodo Dublado","Os Dez Mandamentos Dublado","José do Egito Dublado","Ester Dublado","Davi e Golias Dublado","Sansão e Dalila Dublado"])},
+];
+let dados=JSON.parse(localStorage.getItem('plugtv_final_ads')||JSON.stringify(padraoBase));
+let pastaAtual=null,arquivoTemp=null,arquivoNomeTemp='',db;
+let req=indexedDB.open('PlugTVAds',2);req.onupgradeneeded=e=>e.target.result.createObjectStore('videos',{keyPath:'id'});req.onsuccess=e=>{db=e.target.result;renderGeneros();};req.onerror=()=>renderGeneros();
+function salvarLS(){localStorage.setItem('plugtv_final_ads',JSON.stringify(dados));}
+function renderGeneros(){let h='<div class="generos">';dados.forEach((g,i)=>{h+=`<div class="pasta"><button class="btn-pasta" onclick="delGenero(${i})">🗑️</button><h3>${g.nome}</h3><small>${g.filmes.length} vídeos</small><button class="btn-open" onclick="abrirPasta(${i})">ABRIR PASTA</button></div>`});h+='</div>';document.getElementById('telaGeneros').innerHTML=h;document.getElementById('telaGeneros').style.display='block';}
+function abrirPasta(i){pastaAtual=i;let g=dados[i];let h=`<div class="topo-lista"><button onclick="voltar()" style="background:#333;color:#fff;border:none;padding:10px 14px;border-radius:8px">⬅️ VOLTAR</button><b>${g.nome}</b><button onclick="abrirAddDireto(${i})" style="background:#00ff88;border:none;padding:10px 14px;border-radius:8px;font-weight:900">📱 +</button></div>`;g.filmes.forEach((f,idx)=>{h+=`<div class="filme"><b>🎬 ${f.nome}<br><small style="color:#aaa">${f.tipo=='local'?'📱 Memória':'🌐 Online'}</small></b><span><button class="btn btn-ver" onclick="playLocal(${i},${idx})">▶️</button><button class="btn btn-del" onclick="delFilme(${i},${idx})">🗑️</button></span></div>`;if((idx+1)%6==0){h+=`<div class="ad-box"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2263470788888608" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script></div>`;}});document.getElementById('telaFilmes').innerHTML=h;document.getElementById('telaFilmes').style.display='block';document.getElementById('telaGeneros').style.display='none';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}
+function voltar(){document.getElementById('telaFilmes').style.display='none';document.getElementById('telaGeneros').style.display='block';}
+function abrirGenero(){document.getElementById('modalG').style.display='block';}
+function salvarGenero(){let n=document.getElementById('nomeGenero').value.trim();if(!n)return alert('Nome');dados.push({nome:n,filmes:[]});document.getElementById('nomeGenero').value='';salvarLS();renderGeneros();fecharModais();}
+function abrirAddDireto(pre){let sel=document.getElementById('fGenero');sel.innerHTML='';dados.forEach((g,i)=>sel.innerHTML+=`<option value="${i}" ${i==pre?'selected':''}>${g.nome}</option>`);document.getElementById('modalF').style.display='block';}
+function abrirBackup(){document.getElementById('modalB').style.display='block';}
+document.getElementById('fileInput').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;arquivoTemp=f;arquivoNomeTemp=f.name;document.getElementById('nomeArquivo').style.display='block';document.getElementById('nomeArquivo').innerText='📄 '+f.name;document.getElementById('btnSalvar').style.display='block';});
+document.getElementById('fileMulti').addEventListener('change',e=>{let files=e.target.files;if(!files.length)return;let gi=pastaAtual!==null?pastaAtual:0;let c=0;[...files].forEach(file=>{let id='vid_'+Date.now()+'_'+Math.random();let tx=db.transaction('videos','readwrite');tx.objectStore('videos').put({id,blob:file});tx.oncomplete=()=>{dados[gi].filmes.push({nome:file.name,tipo:'local',link:id});c++;if(c==files.length){salvarLS();abrirPasta(gi);alert(c+' filmes salvos! 📱');}};});});
+function salvarDaMemoria(){if(!arquivoTemp)return alert('Escolha');let gi=document.getElementById('fGenero').value;let id='vid_'+Date.now();let tx=db.transaction('videos','readwrite');tx.objectStore('videos').put({id,blob:arquivoTemp});tx.oncomplete=()=>{dados[gi].filmes.push({nome:arquivoNomeTemp,tipo:'local',link:id});salvarLS();renderGeneros();fecharModais();document.getElementById('nomeArquivo').style.display='none';document.getElementById('btnSalvar').style.display='none';arquivoTemp=null;alert('Salvo em '+dados[gi].nome+'!');};}
+function playLocal(gi,fi){let f=dados[gi].filmes[fi];document.getElementById('modalP').style.display='block';document.getElementById('yt').style.display='none';document.getElementById('v').style.display='block';if(f.tipo=='local'){let tx=db.transaction('videos','readonly');let r=tx.objectStore('videos').get(f.link);r.onsuccess=()=>{let url=URL.createObjectURL(r.result.blob);let v=document.getElementById('v');v.src=url;v.play();};}else if(f.tipo=='youtube'){document.getElementById('v').style.display='none';document.getElementById('yt').style.display='block';document.getElementById('yt').src=f.link;}else{let v=document.getElementById('v');v.src=f.link;v.play();}}
+function fecharP(){document.getElementById('modalP').style.display='none';document.getElementById('v').pause();document.getElementById('yt').src='';}
+function fecharModais(){document.getElementById('modalG').style.display='none';document.getElementById('modalF').style.display='none';document.getElementById('modalB').style.display='none';}
+function delGenero(i){if(confirm('Apagar '+dados[i].nome+'?')){dados.splice(i,1);salvarLS();renderGeneros();}}
+function delFilme(gi,fi){if(confirm('Apagar '+dados[gi].filmes[fi].nome+'?')){let f=dados[gi].filmes[fi];if(f.tipo=='local'&&db)db.transaction('videos','readwrite').objectStore('videos').delete(f.link);dados[gi].filmes.splice(fi,1);salvarLS();abrirPasta(gi);}}
+function resetar(){if(confirm('Voltar padrão?')){localStorage.removeItem('plugtv_final_ads');dados=JSON.parse(JSON.stringify(padraoBase));salvarLS();renderGeneros();}}
+function fazerBackup(){let a=document.createElement('a');a.href="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(dados));a.download="plugtv-backup.json";a.click();}
+document.getElementById('fileBackup').addEventListener('change',e=>{let file=e.target.files[0];let r=new FileReader();r.onload=ev=>{dados=JSON.parse(ev.target.result);salvarLS();renderGeneros();fecharModais();alert('Restaurado!');};r.readAsText(file);});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
