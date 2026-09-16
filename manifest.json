@@ -1,0 +1,22 @@
+{
+  "name": "Plug TV Gratidão",
+  "short_name": "Plug TV",
+  "description": "Filmes, séries e novelas dublado e legendado grátis",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ffcc00",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2942/2942789.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2942/2942789.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
