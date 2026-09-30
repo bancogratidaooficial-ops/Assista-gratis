@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+body{margin:0;background:#000;overflow:hidden}
+#feed{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}
+.video-box{height:100vh;width:100vw;scroll-snap-align:start;position:relative;background:#000;display:flex;align-items:center;justify-content:center}
+video{height:100%;width:100%;object-fit:contain}
+.info{position:absolute;bottom:80px;left:10px;color:#fff;font-family:Arial;text-shadow:1px 1px 2px #000}
+#pick{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:10;background:#ff0050;color:#fff;padding:12px 20px;border-radius:20px;border:0;font-weight:bold}
+</style>
+</head>
+<body>
+<button id="pick">📁 ESCOLHER SEUS VIDEOS DA MEMORIA</button>
+<div id="feed"></div>
+
+<script>
+document.getElementById('pick').onclick=()=>{
+ let inp=document.createElement('input');inp.type='file';inp.multiple=true;inp.accept='video/*';
+ inp.onchange=e=>{
+   document.getElementById('pick').style.display='none';
+   let feed=document.getElementById('feed');
+   for(let file of e.target.files){
+     let box=document.createElement('div');box.className='video-box';
+     let v=document.createElement('video');v.src=URL.createObjectURL(file);
+     v.loop=true;v.muted=false;v.controls=false;v.playsInline=true;
+     v.setAttribute('autoplay','');v.setAttribute('playsinline','');
+     // autoplay quando aparece na tela igual Kwai
+     let obs=new IntersectionObserver(ents=>{
+       ents.forEach(en=>{
+         if(en.isIntersecting){en.target.play()} else {en.target.pause()}
+       })
+     },{threshold:0.7});
+     obs.observe(v);
+     box.appendChild(v);
+     let info=document.createElement('div');info.className='info';info.innerHTML=file.name;
+     box.appendChild(info);
+     // clique pausa/despausa igual Kwai
+     box.onclick=()=>{v.paused?v.play():v.pause()};
+     feed.appendChild(box);
+   }
+   // toca o primeiro
+   setTimeout(()=>{feed.querySelector('video')?.play()},500);
+ }
+ inp.click();
+}
+</script>
+</body>
+</html>
